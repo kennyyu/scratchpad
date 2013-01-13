@@ -21,7 +21,7 @@ let start host port f =
   Rpc.Connection.with_client ~host ~port f
   >>| fun result -> Result.ok_exn result
 
-let command_rpc (f, summary) =
+let command_create (f, summary) =
   Command.basic
     ~summary
     Command.Spec.(
@@ -41,10 +41,10 @@ let command_rpc (f, summary) =
 let command =
   Command.group
     ~summary:"Calculator Client"
-    [ ("add",command_rpc
+    [ ("add", command_create
       ((fun x y -> fun con -> add con { Add.x = x; y = y }),
        "Add RPC"))
-    ; ("product", command_rpc
+    ; ("product", command_create
       ((fun x y -> fun con -> product con { Product.x = x; y = y }),
        "Product RPC"))
     ]
