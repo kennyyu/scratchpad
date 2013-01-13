@@ -1,5 +1,4 @@
 open Core.Std
-open Async.Std
 open Async_extra.Std
 
 module Add = struct
